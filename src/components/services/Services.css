@@ -1,0 +1,290 @@
+.App {
+  font-family: sans-serif;
+  text-align: center;
+}
+
+.content-wrapper-container .header-main {
+  margin-top: 0;
+  width: 90%;
+  height: 15%;
+  font-size: 0.7rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 3%;
+}
+
+.price-iva {
+  display: flex;
+  flex-direction: column;
+  height: 30%;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.price-card {
+  height: 470px;
+  width: 230px;
+  background-color: white;
+  margin: 1%;
+  box-shadow: 0px 5px 10px #00000014;
+  /* background-image: url("../../img/mask_onditas.svg"); */
+  background-repeat: no-repeat;
+  margin-top: 9%;
+  margin-bottom: 5%;
+}
+
+.price-card:hover {
+  outline: none !important;
+  border-width: 1.5px;
+  border-color: #39b0b9;
+  transform: translateY(-1px);
+  box-shadow: 0 0 8px #39b0b9;
+}
+
+.price-card .circle {
+  width: 100%;
+  height: 5%;
+  position: relative;
+  top: -10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.circle-circle {
+  height: 100%;
+  position: absolute;
+  top: -10px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50px;
+  display: flex;
+  justify-content: center;
+  background-color: #39b0b9;
+}
+
+.card-content {
+  height: 95%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.card-content .card-elements {
+  width: 100%;
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.card-content h3 {
+  width: 100%;
+  height: 10%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1em;
+  color: #1d3051;
+  margin: 0;
+  font-weight: bold;
+}
+
+.card-content h1 {
+  height: 45%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3em;
+  margin: 0;
+  font-weight: bold;
+  color: #1d3051;
+}
+
+.card-content span {
+  font-size: 1.3rem;
+  color: #1d3051;
+  width: 18%;
+  height: 50%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  margin-right: 3px;
+}
+
+.card-content p {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  height: 25%;
+  color: #1d3051;
+  font-size: 0.8rem;
+}
+
+.iva {
+  width: 15%;
+  top: 20%;
+  margin-left: 3px;
+  font-weight: 600;
+  margin-top: 55px;
+}
+
+a {
+  color: #0000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.btn-container {
+  width: 80%;
+  height: 15%;
+  margin-top: 1rem;
+  margin-bottom: 30px;
+  z-index: 20;
+}
+
+.btn-container > a {
+  float: left;
+  font: 300 0.9rem/50px "Poppins", sans-serif;
+  text-align: center;
+  letter-spacing: 2px;
+  background: transparent;
+  color: #7ee1e8;
+  border: 2px solid #7ee1e8;
+  width: 180px;
+  height: 40px;
+  margin-top: -2px;
+  cursor: pointer;
+  transition: all ease 0.25s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn-container > a:hover {
+  background: rgba(255, 255, 255, 0);
+  color: #ffffff;
+}
+
+.ease {
+  background: transparent linear-gradient(90deg, #6dcdeb 0%, #72c48d 100%) 0% 0%
+    no-repeat padding-box;
+  width: 0px;
+  height: 40px;
+  transition: all ease 0.25s;
+}
+
+.btn-container:hover .ease {
+  background: transparent linear-gradient(90deg, #6dcdeb 0%, #72c48d 100%) 0% 0%
+    no-repeat padding-box;
+  border: 0;
+  width: 183px;
+}
+
+.card-wrappers {
+  width: 90vw;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (min-width: 1920px) and (max-width: 2560px) {
+  .second-section-main-wrapper {
+    height: 100vh;
+    border-bottom: 5px darkmagenta;
+  }
+
+  .mask-background {
+    height: 100vh;
+    top: 0;
+  }
+
+  .content-wrapper-container {
+    height: 100vh;
+    width: 100%;
+    padding-top: 0;
+  }
+
+  .card-wrappers {
+    margin-top: 3%;
+  }
+
+  .content-wrapper-container h2 {
+    margin-top: 5%;
+    margin-bottom: 4rem;
+    font-size: 3rem;
+  }
+
+  .price-card {
+    height: 700px;
+    width: 330px;
+    margin: 0 2%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin-top: 3%;
+    margin-bottom: 5%;
+  }
+
+  .price-card .circle {
+    height: 8%;
+    top: -10px;
+  }
+
+  .circle-circle {
+    display: flex;
+    align-items: center;
+    top: -20px;
+    width: 70px;
+    height: 70px;
+  }
+
+  .card-content .card-elements {
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    margin-bottom: 20%;
+  }
+
+  .card-content h3 {
+    height: 15%;
+    font-size: 1.8rem;
+    color: #1d3051;
+    margin-block-end: 0;
+  }
+
+  .card-content h1 {
+    height: 15%;
+    font-size: 3em;
+    margin: 0;
+    font-weight: bold;
+    color: #1d3051;
+  }
+
+  .card-content .text-cards {
+    margin: 0;
+    height: 25%;
+    color: #1d3051;
+    font-size: 1.2rem;
+  }
+
+  .btn-container {
+    margin-top: 5%;
+    width: 55%;
+    height: 15%;
+  }
+
+  .btn-container > a {
+    font: 300 1rem/50px "Poppins", sans-serif;
+    letter-spacing: 2px;
+    width: 180px;
+    height: 40px;
+  }
+}
