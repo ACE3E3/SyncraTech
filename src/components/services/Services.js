@@ -41,7 +41,6 @@ function Services() {
 
   return (
     <div className="second-section-main-wrapper">
-      <div className="mask-background" />
       <div className="content-wrapper-container">
         <h2>Some cards</h2>
         <div className="card-wrappers">
