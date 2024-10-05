@@ -1,12 +1,29 @@
 import React from "react";
+import videoSrc from "../../assets/videos/video1.webm";
 
 function Home() {
   return (
     <div>
      <div
         className='text-center bg-image'
-        style={{ backgroundImage: "url('https://mdbootstrap.com/img/new/slides/041.webp')" }}
       >
+        <video
+          autoPlay
+          loop
+          muted
+          style={{
+            position: "absolute",
+            width: "100%",
+            height: "100vh",
+            objectFit: "cover",
+            top: 0,
+            left: 0,
+            zIndex: -1,
+          }}
+        >
+          <source src={videoSrc} type="video/webm" />
+          Your browser does not support the video tag.
+        </video>
         <div className='mask' style={{ backgroundColor: 'rgba(0, 0, 0, 0.6)', height : '100vh' }}>
           <div className='d-flex justify-content-center align-items-center h-100'>
             <div className='text-white'>
