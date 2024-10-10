@@ -1,5 +1,4 @@
 import './App.css';
-import { useRef } from 'react';
 import { Parallax } from 'react-parallax';
 import Header from './components/header/Header';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -11,15 +10,36 @@ import Home from './components/home/Home';
 import FAQ from './components/faq/faq';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import { useRef, useCallback } from 'react';
 
 function App() {
-  const scrollToId = (id) => {
+  const smoothScroll = useCallback((targetY, duration) => {
+    const startY = window.pageYOffset;
+    const difference = targetY - startY;
+    const startTime = performance.now();
+
+    const step = (currentTime) => {
+      const progress = (currentTime - startTime) / duration;
+      if (progress < 1) {
+        window.scrollTo(0, startY + difference * easeInOutCubic(progress));
+        requestAnimationFrame(step);
+      } else {
+        window.scrollTo(0, targetY);
+      }
+    };
+
+    requestAnimationFrame(step);
+  }, []);
+
+  const easeInOutCubic = (t) => t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
+
+  const scrollToId = useCallback((id) => {
     const element = document.getElementById(id);
-    element?.scrollIntoView({
-      behavior: 'smooth',
-      block: 'start'
-    });
-  };
+    if (element) {
+      const targetY = element.getBoundingClientRect().top + window.pageYOffset;
+      smoothScroll(targetY, 1000); // 1000ms duration
+    }
+  }, [smoothScroll]);
 
   const fadeIn = {
     hidden: { opacity: 0, y: 100 },
