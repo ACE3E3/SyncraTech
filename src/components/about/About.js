@@ -17,37 +17,37 @@ const items = [
     icon: <SettingsSuggestRoundedIcon />,
     title: 'Adaptable performance',
     description:
-      'Our product effortlessly adjusts to your needs, boosting efficiency and simplifying your tasks.',
+      `Our solutions seamlessly adapt to your unique industrial needs, enabling you to achieve unparalleled operational efficiency. Whether it's manufacturing, automation, or digitalization, we design systems to evolve with your business.`,
   },
   {
     icon: <ConstructionRoundedIcon />,
     title: 'Built to last',
     description:
-      'Experience unmatched durability that goes above and beyond with lasting investment.',
+      'Experience robust and scalable systems designed for long-term reliability. Our MES and industrial automation solutions ensure you get the most out of your investment, minimizing downtime and maximizing productivity.',
   },
   {
     icon: <ThumbUpAltRoundedIcon />,
     title: 'Great user experience',
     description:
-      'Integrate our product into your routine with an intuitive and easy-to-use interface.',
+      'Simplify your workflow with intuitive, user-friendly interfaces. Our digitalization and web development solutions are crafted to make even the most complex processes accessible and efficient for every user.',
   },
   {
     icon: <AutoFixHighRoundedIcon />,
     title: 'Innovative functionality',
     description:
-      'Stay ahead with features that set new standards, addressing your evolving needs better than the rest.',
+      'Stay ahead with innovative features that redefine industry standards. From real-time data integration to IoT-powered automation, our cutting-edge solutions address evolving industrial and digital challenges with ease.',
   },
   {
     icon: <SupportAgentRoundedIcon />,
     title: 'Reliable support',
     description:
-      'Count on our responsive customer support, offering assistance that goes beyond the purchase.',
+      'Count on our dedicated support team to ensure smooth operations at every stage. We provide personalized assistance to help you maintain efficiency and address issues promptly, well beyond deployment.',
   },
   {
     icon: <QueryStatsRoundedIcon />,
     title: 'Precision in every detail',
     description:
-      'Enjoy a meticulously crafted product where small touches make a significant impact on your overall experience.',
+      'Meticulously engineered systems that pay attention to the finer details of your operational requirements. Every feature and function is crafted to optimize performance and deliver measurable results.',
   },
 ];
 
