@@ -2,7 +2,7 @@ import React from 'react'
 import './Services.css';
 
 function Services() {
-  const cardCreator = (level, cost, description) => {
+  const cardCreator = (level, imageSrc, description) => {
     return (
       <div className="price-card">
         <div className="circle">
@@ -11,13 +11,9 @@ function Services() {
         <div className="card-content">
           <div className="card-elements">
             <h3>{level}</h3>
-            <div className="price-iva">
-              <h1>
-                <span className="price-sign">$</span>
-                {cost}
-              </h1>
-              <p className="iva">+ IVA</p>
-            </div>
+            <div className="image-container">
+        <img src={imageSrc} alt="Service" />
+      </div>
             <p
               className="text-cards"
               style={{
@@ -44,26 +40,26 @@ function Services() {
       <div className="content-wrapper-container">
         <h2>Some cards</h2>
         <div className="card-wrappers">
-          {cardCreator(
-            "Entrepreneur",
-            600,
-            "Fase preliminar para la fundación de la startup. Constitución empresarial y trámites notariales. Asesoría legal."
-          )}
-          {cardCreator(
-            "Startup",
-            1000,
-            "Gestoría laboral y contractual para las startups que ya están en marcha."
-          )}
-          {cardCreator(
-            "Escalated",
-            1500,
-            "Startups con un crecimiento sostenido que requieren de una plataforma legal continua."
-          )}
-          {cardCreator(
-            "Escalated",
-            1500,
-            "Startups con un crecimiento sostenido que requieren de una plataforma legal continua."
-          )}
+        {cardCreator(
+          "Smart Factory Evolution",
+          1200,
+          "Transform your operations with end-to-end MES implementation, ensuring seamless production workflows and real-time insights."
+        )}
+        {cardCreator(
+          "Automation Mastery",
+          1500,
+          "Revolutionize your processes with cutting-edge industrial automation, driving precision, speed, and operational excellence."
+        )}
+        {cardCreator(
+          "Future-Ready Digitalization",
+          1000,
+          "Empower your business with IoT-driven solutions, predictive analytics, and smart technologies for a digital-first strategy."
+        )}
+        {cardCreator(
+          "Tailored Web Ecosystems",
+          800,
+          "Build dynamic and scalable web solutions designed to streamline your industrial and business operations."
+        )}
         </div>
       </div>
     </div>
