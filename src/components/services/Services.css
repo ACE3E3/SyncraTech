@@ -83,8 +83,9 @@
 }
 
 .card-content h3 {
-  width: 100%;
+  width: 90%;
   height: 10%;
+  padding-bottom: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -245,7 +246,7 @@ a {
   }
 
   .card-content .card-elements {
-    height: 90%;
+    height: 84%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -291,7 +292,7 @@ a {
 
 .image-container {
   width: 100%;
-  height: 150px; /* Adjust height as needed */
+  height: 125px; /* Adjust height as needed */
   display: flex;
   justify-content: center;
   align-items: center;

@@ -238,8 +238,8 @@ export default function FAQ() {
           </AccordionDetails>
         </Accordion>
         <Accordion
-          expanded={expanded === 'panel8'}
-          onChange={handleChange('panel8')}
+          expanded={expanded === 'panel9'}
+          onChange={handleChange('panel9')}
         >
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
@@ -262,8 +262,8 @@ export default function FAQ() {
           </AccordionDetails>
         </Accordion>
         <Accordion
-          expanded={expanded === 'panel8'}
-          onChange={handleChange('panel8')}
+          expanded={expanded === 'panel10'}
+          onChange={handleChange('panel10')}
         >
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}

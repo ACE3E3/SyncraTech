@@ -1,6 +1,38 @@
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+
+
+/* index.css or App.css */
+body {
+  font-family: 'Montserrat', Arial, sans-serif !important;
+  margin: 0; /* Optional: Reset margin */
+  padding: 0; /* Optional: Reset padding */
+  box-sizing: border-box; /* Ensure consistent box-sizing */
+}
+
+/* Ensure all elements inherit the font */
+*, *::before, *::after {
+  font-family: inherit !important;
+  box-sizing: inherit;
+}
+
+.loadingScreen {
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #26272B;
+  height: 100vh; /* Full screen height */
+  width: 100%;
+  overflow: hidden; /* Prevent content overflow when height is animated */
+  transition: height 1s ease; /* Smooth height transition */
+}
+
+.loadingScreen.disappear {
+  height: 0; /* Collapse height to 0 */
+}
 
 .App {
   text-align: center;
