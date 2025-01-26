@@ -3,11 +3,11 @@ import PropTypes from "prop-types";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
-import MuiChip from "@mui/material/Chip";
+import Chip from "@mui/material/Chip";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
-
 import { styled } from "@mui/material/styles";
+import { motion } from "framer-motion";
 
 const items = [
   {
@@ -30,78 +30,72 @@ const items = [
   },
   {
     title: "Customised Application Development",
-    description: `Our tailored app development services deliver high-performance platforms designed for industrial needs. Whether it's a custom portal for MES or responsive enterprise applications, we build solutions that drive efficiency and user satisfaction.`,
+    description:
+      "Our tailored app development services deliver high-performance platforms designed for industrial needs. Whether it's a custom portal for MES or responsive enterprise applications, we build solutions that drive efficiency and user satisfaction.",
     image: require("../../assets/customApp.jpg"),
   },
 ];
 
-const Chip = styled(MuiChip)(({ theme }) => ({
-  variants: [
-    {
-      props: ({ selected }) => selected,
-      style: {
-        background:
-          "linear-gradient(to bottom right, hsl(210, 98%, 48%), hsl(210, 98%, 35%))",
-        color: "hsl(0, 0%, 100%)",
-        borderColor: theme.palette.primary.light,
-        "& .MuiChip-label": {
-          color: "hsl(0, 0%, 100%)",
-        },
-        ...theme.applyStyles("dark", {
-          borderColor: theme.palette.primary.dark,
-        }),
-      },
-    },
-  ],
+const StyledChip = styled(Chip)(({ theme, selected }) => ({
+  background: selected
+    ? "linear-gradient(45deg, #007BFF, #0056b3)"
+    : theme.palette.grey[200],
+  color: selected ? "#fff" : theme.palette.text.primary,
+  fontWeight: selected ? "bold" : "normal",
+  cursor: "pointer",
+  boxShadow: selected ? "0px 4px 10px rgba(0, 0, 0, 0.2)" : "none",
 }));
 
 function MobileLayout({ selectedItemIndex, handleItemClick, selectedFeature }) {
-  if (!items[selectedItemIndex]) {
-    return null;
-  }
-
   return (
     <Box
       sx={{
+        width: "100%",
         display: { xs: "flex", sm: "none" },
         flexDirection: "column",
         gap: 2,
       }}
     >
-      <Box sx={{ display: "flex", gap: 2, overflow: "auto" }}>
+      <Box sx={{ display: "flex", gap: 2, overflowX: "auto", pb: 1 }}>
         {items.map(({ title }, index) => (
-          <Chip
-            size="medium"
+          <StyledChip
             key={index}
             label={title}
-            onClick={() => handleItemClick(index)}
             selected={selectedItemIndex === index}
+            onClick={() => handleItemClick(index)}
           />
         ))}
       </Box>
-      <Card variant="outlined">
+      <Card
+        variant="outlined"
+        sx={{
+          p: 2,
+          borderRadius: 3,
+          boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.1)",
+        }}
+      >
         <Box
-          sx={(theme) => ({
-            mb: 2,
+          component={motion.div}
+          layout
+          sx={{
+            height: 280,
             backgroundSize: "cover",
             backgroundPosition: "center",
-            backgroundRepeat: "no-repeat",
-            backgroundPosition: "center",
-            minHeight: 280,
+            borderRadius: 2,
+            mb: 2,
             backgroundImage: `url(${selectedFeature.image})`,
-          })}
+          }}
         />
-        <Box sx={{ px: 2, pb: 2 }}>
-          <Typography
-            gutterBottom
-            sx={{ color: "text.primary", fontWeight: "medium" }}
-          >
-            {selectedFeature.title}
-          </Typography>
-          <Typography variant="body2" sx={{ color: "text.secondary", mb: 1.5 }}>
-            {selectedFeature.description}
-          </Typography>
-        </Box>
+        <Typography
+          variant="h6"
+          gutterBottom
+          sx={{ fontWeight: "bold", color: "text.primary" }}
+        >
+          {selectedFeature.title}
+        </Typography>
+        <Typography variant="body2" sx={{ color: "text.secondary" }}>
+          {selectedFeature.description}
+        </Typography>
       </Card>
     </Box>
   );
@@ -111,15 +105,11 @@ MobileLayout.propTypes = {
   handleItemClick: PropTypes.func.isRequired,
   selectedFeature: PropTypes.shape({
     description: PropTypes.string.isRequired,
-    icon: PropTypes.element,
-    imageDark: PropTypes.string.isRequired,
-    imageLight: PropTypes.string.isRequired,
+    image: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
   }).isRequired,
   selectedItemIndex: PropTypes.number.isRequired,
 };
-
-export { MobileLayout };
 
 export default function Features() {
   const [selectedItemIndex, setSelectedItemIndex] = React.useState(0);
@@ -128,133 +118,120 @@ export default function Features() {
     setSelectedItemIndex(index);
   };
 
+  React.useEffect(() => {
+    const interval = setInterval(() => {
+      setSelectedItemIndex((prevIndex) =>
+        prevIndex === items.length - 1 ? 0 : prevIndex + 1
+      );
+    }, 4000); // 4 seconds interval
+    return () => clearInterval(interval);
+  }, []);
+
   const selectedFeature = items[selectedItemIndex];
 
   return (
-    <Container id="features" sx={{ py: { xs: 8, sm: 16 } }}>
-      <Box sx={{ width: "100%" }}>
-        <Typography
-          component="h2"
-          variant="h4"
-          gutterBottom
-          sx={{ color: "text.primary" }}
-        >
-          Product features
-        </Typography>
-        <Typography
-          variant="body1"
-          sx={{ color: "text.secondary", mb: { xs: 2, sm: 4 } }}
-        >
-          "Transforming Operations with Advanced Industrial and Digital
-          Solutions"
-        </Typography>
-        <Typography
-          variant="body1"
-          sx={{ color: "text.secondary", mb: { xs: 2, sm: 4 } }}
-        >
-          Discover how our innovative products empower businesses to achieve
-          operational excellence. From streamlined manufacturing processes to
-          smart digitalization and cutting-edge web solutions, our features are
-          designed to enhance efficiency, productivity, and adaptability across
-          industries. Explore the tools that drive your success in the era of
-          Industry 4.0.
-        </Typography>
-      </Box>
+    <Container
+      id="features"
+      sx={{ py: { xs: 6, sm: 10 }, textAlign: "center" }}
+    >
+      <Typography
+        component="h2"
+        variant="h4"
+        gutterBottom
+        sx={{ fontWeight: "bold" }}
+      >
+        Product Features
+      </Typography>
+      <Typography variant="body1" sx={{ mb: 4, color: "text.secondary" }}>
+        Discover how our innovative solutions transform your business operations
+        with cutting-edge tools and technologies.
+      </Typography>
+
       <Box
         sx={{
           display: "flex",
           flexDirection: { xs: "column", md: "row-reverse" },
-          gap: 2,
+          gap: 4,
+          alignItems: "center",
         }}
       >
-        <div>
-          <Box
-            sx={{
-              display: { xs: "none", sm: "flex" },
-              flexDirection: "column",
-              gap: 2,
-              height: "100%",
-            }}
-          >
-            {items.map(({ icon, title, description }, index) => (
-              <Box
-                key={index}
-                component={Button}
-                onClick={() => handleItemClick(index)}
-                sx={[
-                  (theme) => ({
-                    p: 2,
-                    height: "100%",
-                    width: "100%",
-                    "&:hover": {
-                      backgroundColor: theme.palette.action.hover,
-                    },
-                  }),
-                  selectedItemIndex === index && {
-                    backgroundColor: "action.selected",
-                  },
-                ]}
-              >
-                <Box
-                  sx={[
-                    {
-                      width: "100%",
-                      display: "flex",
-                      flexDirection: "column",
-                      alignItems: "left",
-                      gap: 1,
-                      textAlign: "left",
-                      textTransform: "none",
-                      color: "text.secondary",
-                    },
-                    selectedItemIndex === index && {
-                      color: "text.primary",
-                    },
-                  ]}
-                >
-                  {icon}
-
-                  <Typography variant="h6">{title}</Typography>
-                  <Typography variant="body2">{description}</Typography>
-                </Box>
-              </Box>
-            ))}
-          </Box>
-          <MobileLayout
-            selectedItemIndex={selectedItemIndex}
-            handleItemClick={handleItemClick}
-            selectedFeature={selectedFeature}
-          />
-        </div>
-        <Box
+        <Card
+          variant="outlined"
           sx={{
-            display: { xs: "none", sm: "flex" },
-            width: { xs: "100%", md: "70%" },
-            height: "var(--items-image-height)",
+            width: "100%",
+            flex: 1,
+            p: 3,
+            borderRadius: 3,
+            boxShadow: "0px 6px 15px rgba(0, 0, 0, 0.1)",
+            display: { xs: "none", sm: "block" },
           }}
         >
-          <Card
-            variant="outlined"
+          <Box
+            component={motion.div}
+            layout
             sx={{
-              height: "100%",
-              width: "100%",
-              display: { xs: "none", sm: "flex" },
-              pointerEvents: "none",
+              height: 400,
+              borderRadius: 2,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              backgroundImage: `url(${selectedFeature.image})`,
             }}
-          >
-            <Box
-              sx={(theme) => ({
-                m: "auto",
-                width: 420,
-                height: 500,
-                backgroundSize: "contain",
-                backgroundRepeat: "no-repeat",
-                backgroundPosition: "center",
-                backgroundImage: `url(${selectedFeature.image})`,
-              })}
-            />
-          </Card>
+          />
+        </Card>
+
+        <Box
+          sx={{
+            flex: 1,
+            display: { xs: "none", sm: "flex" },
+            flexDirection: "column",
+            gap: 2,
+          }}
+        >
+          {items.map(({ title, description }, index) => (
+            <Button
+              key={index}
+              onClick={() => handleItemClick(index)}
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "flex-start",
+                textTransform: "none",
+                p: 2,
+                borderRadius: 2,
+                boxShadow:
+                  selectedItemIndex === index
+                    ? "0px 4px 12px rgba(0, 0, 0, 0.2)"
+                    : "none",
+                bgcolor:
+                  selectedItemIndex === index
+                    ? "primary.light"
+                    : "background.paper",
+              }}
+            >
+              <Typography
+                variant="h6"
+                sx={{
+                  fontWeight: "bold",
+                  color:
+                    selectedItemIndex === index
+                      ? "primary.contrastText"
+                      : "text.primary",
+                }}
+              >
+                {title}
+              </Typography>
+              <Typography variant="body2" sx={{ color: "text.secondary" }}>
+                {description}
+              </Typography>
+            </Button>
+          ))}
         </Box>
+
+        <MobileLayout
+          selectedItemIndex={selectedItemIndex}
+          handleItemClick={handleItemClick}
+          selectedFeature={selectedFeature}
+        />
       </Box>
     </Container>
   );

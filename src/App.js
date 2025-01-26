@@ -10,32 +10,18 @@ import Home from "./components/home/Home";
 import FAQ from "./components/faq/faq";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { useRef, useCallback, useState, useEffect } from "react";
+import { useCallback, useState, useEffect } from "react";
 import { waveform } from "ldrs";
 
 waveform.register();
 
 function App() {
-  const smoothScroll = useCallback((targetY, duration) => {
-    const startY = window.pageYOffset;
-    const difference = targetY - startY;
-    const startTime = performance.now();
-
-    const step = (currentTime) => {
-      const progress = (currentTime - startTime) / duration;
-      if (progress < 1) {
-        window.scrollTo(0, startY + difference * easeInOutCubic(progress));
-        requestAnimationFrame(step);
-      } else {
-        window.scrollTo(0, targetY);
-      }
-    };
-
-    requestAnimationFrame(step);
+  const smoothScroll = useCallback((targetY) => {
+    window.scrollTo({
+      top: targetY,
+      behavior: "smooth",
+    });
   }, []);
-
-  const easeInOutCubic = (t) =>
-    t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
 
   const scrollToId = useCallback(
     (id) => {
@@ -43,7 +29,7 @@ function App() {
       if (element) {
         const targetY =
           element.getBoundingClientRect().top + window.pageYOffset;
-        smoothScroll(targetY, 1000); // 1000ms duration
+        smoothScroll(targetY);
       }
     },
     [smoothScroll]
@@ -104,8 +90,13 @@ function App() {
     <>
       {isLoading ? (
         <div className={`loadingScreen ${shouldDisappear ? "disappear" : ""}`}>
-        <l-waveform size="35" stroke="3.5" speed="1" color="white"></l-waveform>
-      </div>
+          <l-waveform
+            size="35"
+            stroke="3.5"
+            speed="1"
+            color="white"
+          ></l-waveform>
+        </div>
       ) : (
         <div className="App">
           <div id="header">

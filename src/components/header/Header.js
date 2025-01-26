@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { motion, useScroll, useMotionValueEvent } from 'framer-motion';
-import { Menu, X } from 'lucide-react';
+import React, { useState } from "react";
+import { motion, useScroll, useMotionValueEvent } from "framer-motion";
+import { Menu, X } from "lucide-react";
 
 const Header = ({ scrollToId }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -9,12 +9,12 @@ const Header = ({ scrollToId }) => {
 
   const navItems = [
     // { name: 'Home', id: 'home' },
-    { name: 'Products', id: 'products' },
-    { name: 'Services', id: 'services' },
-    { name: 'Testimonials', id: 'testimonials' },
-    { name: 'About', id: 'about' },
-    { name: 'FAQ', id: 'faq' },
-    { name: 'Contact', id: 'contact' },
+    { name: "Products", id: "products" },
+    { name: "Services", id: "services" },
+    // { name: 'Testimonials', id: 'testimonials' },
+    { name: "About", id: "about" },
+    { name: "FAQ", id: "faq" },
+    { name: "Contact", id: "footer" },
   ];
 
   useMotionValueEvent(scrollY, "change", (latest) => {
@@ -28,7 +28,7 @@ const Header = ({ scrollToId }) => {
 
   const handleNavClick = (id) => {
     scrollToId(id);
-    setIsOpen(false);  // Close mobile menu after clicking
+    setIsOpen(false); // Close mobile menu after clicking
   };
 
   return (
@@ -41,7 +41,7 @@ const Header = ({ scrollToId }) => {
       transition={{ duration: 0.35, ease: "easeInOut" }}
       className="fixed left-0 right-0 mx-auto w-[95%] max-w-5xl bg-white/80 backdrop-blur-md rounded-lg md:rounded-full shadow-lg z-50"
     >
-      <div className="container mx-auto px-4 sm:px-6 py-3 sm:py-4 flex justify-between items-center" >
+      <div className="container mx-auto px-4 sm:px-6 py-3 sm:py-4 flex justify-between items-center">
         <motion.div
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
@@ -77,7 +77,9 @@ const Header = ({ scrollToId }) => {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: isOpen ? 1 : 0, y: isOpen ? 0 : -20 }}
         transition={{ duration: 0.3 }}
-        className={`${isOpen ? 'block' : 'hidden'} md:hidden bg-white/90 rounded-b-lg`}
+        className={`${
+          isOpen ? "block" : "hidden"
+        } md:hidden bg-white/90 rounded-b-lg`}
       >
         <div className="px-2 pt-2 pb-3 flex flex-col items-center">
           {navItems.map((item) => (
